@@ -1,8 +1,8 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
+  background-color: var(--primary-accent-color);
   width: 100%;
-  z-index: 2;
+  z-index: 10;
   position: fixed;
 }
 
@@ -15,7 +15,7 @@ header nav {
   align-items: center;
   gap: 0 24px;
   margin: auto;
-  max-width: 1248px;
+  max-width: 100%;
   height: var(--nav-height);
   padding: 0 24px;
   font-family: var(--body-font-family);
@@ -35,7 +35,7 @@ header nav[aria-expanded='true'] {
     display: flex;
     justify-content: space-between;
     gap: 0 32px;
-    max-width: 1264px;
+    max-width: 100%;
     padding: 0 32px;
   }
 
@@ -48,10 +48,17 @@ header nav[aria-expanded='true'] {
 header nav p {
   margin: 0;
   line-height: 1;
+  color: var(--light-color);
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 header nav a:any-link {
-  color: currentcolor;
+  color: var(--light-color);
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 /* hamburger */
@@ -145,8 +152,9 @@ header .nav-brand {
 }
 
 header nav .nav-brand img {
-  width: 128px;
+  width: 210px;
   height: auto;
+  margin-right: 30px;
 }
 
 /* sections */
@@ -164,9 +172,15 @@ header nav[aria-expanded='true'] .nav-sections {
 }
 
 header nav .nav-sections ul {
+  display: flex;
+  gap: 24px;
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+  background-color: var(--overlay-color);
+  width: 100%;
+  justify-content: space-between;
 }
 
 header nav .nav-sections ul > li {
@@ -180,6 +194,18 @@ header nav .nav-sections ul > li > ul {
 header nav .nav-sections ul > li > ul > li {
   font-weight: 400;
 }
+
+/* Style for the last navigation item (Select a Store) */
+header nav .nav-sections ul > li:last-child {
+  margin-left: auto;
+}
+
+header nav .nav-sections ul > li:last-child .icon {
+  width: 20px;
+  height: 20px;
+  padding-left: 8px;
+}
+
 
 @media (width >= 900px) {
   header nav .nav-sections {
@@ -220,7 +246,7 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections ul {
     display: flex;
-    gap: 24px;
+    gap: 48px;
     margin: 0;
   }
 

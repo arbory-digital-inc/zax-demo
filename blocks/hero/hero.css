@@ -6,32 +6,320 @@
 .hero {
   position: relative;
   padding: 40px 24px;
-  min-height: 300px;
+  background: var(--hero-background);
+  max-height: 90vh;
+  min-height: 20vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  &.slim {
+    min-height: 5vh;
+  }
+  
+  &.fat {
+    min-height: 56vh;
+  }
+
+  > div {
+    width: 100%;
+    max-width: var(--desktop-max-width);
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  h1, h2 {
+    margin: 10px 0 16px;
+  }
+
+  p code:not(.code-content) {
+    display: none;
+  }
 }
 
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+.hero.black-header h1 {
   color: var(--background-color);
 }
 
-.hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+.hero .blog-content {
+  padding: 24px 40px;
 }
 
-.hero img {
+.hero .content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero video.video-bg {
+  width: 120vw;
+  height: auto;
+  position: absolute;
+  inset: 1px 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.hero picture.img-bg {
+  position: absolute;
+  width: 120vw;
+  z-index: 0;
+  inset: 1px 50%;
+  transform: translateX(-50%);
   object-fit: cover;
+  box-sizing: border-box;
+
+  img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+  }
+}
+
+.hero.fixed-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.hero.overlay {
+  text-shadow: 2px 2px 3px rgb(0 0 0 / 50%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(265deg,rgb(0 0 0 / 0%) 1%, rgb(0 0 0 / 100%) 100%);
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+}
+
+.hero .video-error-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #f5def3;
+  color: red;
+  text-align: center;
+  font-size: 0.8em;
+  width: 100vw;
+  padding: 5px 0;
+  margin: 0 auto;
+  border-radius: 0 0 4px 4px;
+}
+
+.hero .custom-col {
   width: 100%;
-  height: 100%;
 }
 
 @media (width >= 900px) {
   .hero {
     padding: 40px 32px;
+  }
+
+  .hero .content-wrapper {
+    flex-direction: row;
+  }
+
+  .hero picture.img-bg img {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero .blog-content {
+    position: relative;
+    right: 50px;
+    z-index: 1;
+  }
+
+  .hero .custom-col {
+    width: var(--custom-col-width);
+  }
+}
+
+/* Hero Carousel Variant */
+.hero.hero-carousel {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 6; /* Default aspect ratio for desktop */
+  max-height: 800px;
+  margin-bottom: -1px; /* Prevent gap between wave and next section */
+}
+
+/* Simple curved shape at the bottom */
+.hero.hero-carousel::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -15%;
+  width: 130%;
+  height: 70px;
+  background-color: #fff; /* Match your page background color */
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  transform: translateY(35px);
+  z-index: 2;
+}
+
+/* Carousel slides container */
+.hero.hero-carousel .slides-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Individual slide */
+.hero.hero-carousel .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  z-index: 1;
+}
+
+.hero.hero-carousel .slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Background images in carousel */
+.hero.hero-carousel .slide picture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero.hero-carousel .slide picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Navigation controls */
+.hero.hero-carousel .carousel-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero.hero-carousel .carousel-controls button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+}
+
+.hero.hero-carousel .carousel-controls button.prev {
+  left: 20px;
+}
+
+.hero.hero-carousel .carousel-controls button.next {
+  right: 20px;
+}
+
+.hero.hero-carousel .carousel-controls button:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.hero.hero-carousel .carousel-controls button img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Indicators */
+.hero.hero-carousel .carousel-indicators {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: auto;
+  justify-content: center;
+}
+
+.hero.hero-carousel .carousel-indicators button {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 2px;
+  position: relative;
+  z-index: 2;
+  padding: 0;
+}
+
+.hero.hero-carousel .carousel-indicators button.active {
+  background: #001e3d; /* Dark blue color from the image */
+}
+
+.hero.hero-carousel .carousel-indicators button:hover:not(.active) {
+  background: #cccccc;
+}
+
+/* Responsive adjustments for carousel */
+@media (max-width: 768px) {
+  .hero.hero-carousel {
+    aspect-ratio: 2 / 1; 
+    min-height: 0;/* Slightly taller aspect ratio for tablets */
+  }
+  
+  .hero.hero-carousel .carousel-controls button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .hero.hero-carousel .carousel-controls button.prev {
+    left: 15px;
+  }
+  
+  .hero.hero-carousel .carousel-controls button.next {
+    right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero.hero-carousel {
+    aspect-ratio: 16 / 10; /* Even taller aspect ratio for mobile */
+  }
+  
+  .hero.hero-carousel .carousel-controls {
+    display: none; /* Hide controls on mobile - rely on swipe */
+  }
+  
+  .hero.hero-carousel .carousel-indicators button {
+    width: 10px;
+    height: 10px;
   }
 }

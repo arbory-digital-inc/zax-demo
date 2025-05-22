@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+import { sheetData } from './utils.js';
+
 /* eslint-env browser */
 function sampleRUM(checkpoint, data) {
   // eslint-disable-next-line max-len
@@ -388,44 +390,6 @@ function wrapTextNodes(block) {
 }
 
 /**
- * Decorates paragraphs containing a single link as buttons.
- * @param {Element} element container element
- */
-function decorateButtons(element) {
-  element.querySelectorAll('a').forEach((a) => {
-    a.title = a.title || a.textContent;
-    if (a.href !== a.textContent) {
-      const up = a.parentElement;
-      const twoup = a.parentElement.parentElement;
-      if (!a.querySelector('img')) {
-        if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
-          a.className = 'button'; // default
-          up.classList.add('button-container');
-        }
-        if (
-          up.childNodes.length === 1
-          && up.tagName === 'STRONG'
-          && twoup.childNodes.length === 1
-          && twoup.tagName === 'P'
-        ) {
-          a.className = 'button primary';
-          twoup.classList.add('button-container');
-        }
-        if (
-          up.childNodes.length === 1
-          && up.tagName === 'EM'
-          && twoup.childNodes.length === 1
-          && twoup.tagName === 'P'
-        ) {
-          a.className = 'button secondary';
-          twoup.classList.add('button-container');
-        }
-      }
-    }
-  });
-}
-
-/**
  * Add <img> for icon, prefixed with codeBasePath and optional prefix.
  * @param {Element} [span] span element with icon classes
  * @param {string} [prefix] prefix to be added to icon src
@@ -461,8 +425,8 @@ function decorateIcons(element, prefix = '') {
  * Decorates all sections in a container element.
  * @param {Element} main The container element
  */
-function decorateSections(main) {
-  main.querySelectorAll(':scope > div').forEach((section) => {
+async function decorateSections(main) {
+  main.querySelectorAll(':scope > div').forEach(async (section) => {
     const wrappers = [];
     let defaultContent = false;
     [...section.children].forEach((e) => {
@@ -483,15 +447,33 @@ function decorateSections(main) {
     const sectionMeta = section.querySelector('div.section-metadata');
     if (sectionMeta) {
       const meta = readBlockConfig(sectionMeta);
+      const config = await sheetData('placeholders', 'section');
       Object.keys(meta).forEach((key) => {
-        if (key === 'style') {
-          const styles = meta.style
-            .split(',')
-            .filter((style) => style)
-            .map((style) => toClassName(style.trim()));
-          styles.forEach((style) => section.classList.add(style));
-        } else {
-          section.dataset[toCamelCase(key)] = meta[key];
+        const selector = config.find((item) => item.key.replace(' ', '-') === key);
+        switch (selector.type) {
+          case 'style': {
+            const styles = meta[key]
+              .split(',')
+              .filter((style) => style)
+              .map((style) => toClassName(style.trim()));
+            styles.forEach((style) => section.classList.add(style));
+            break;
+          }
+          case 'styles': {
+            const targets = section.querySelectorAll(selector.target);
+            const styles = meta[key]
+              .split(',')
+              .filter((style) => style)
+              .map((style) => style.trim().split(' '));
+            targets.forEach((element, i) => element.classList.add(...styles[i]));
+            break;
+          }
+          case 'variable':
+            section.style.setProperty(`--${toClassName(key)}`, meta[key]);
+            break;
+          default:
+            section.dataset[toCamelCase(key)] = meta[key];
+            break;
         }
       });
       sectionMeta.parentNode.remove();
@@ -677,7 +659,6 @@ export {
   createOptimizedPicture,
   decorateBlock,
   decorateBlocks,
-  decorateButtons,
   decorateIcons,
   decorateSections,
   decorateTemplateAndTheme,

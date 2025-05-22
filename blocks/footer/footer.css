@@ -1,20 +1,352 @@
 footer {
-  background-color: var(--light-color);
+  background-color: white;
   font-size: var(--body-font-size-xs);
+  border-top: 1px solid #e6e6e6;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px 0px;
+  padding-top: 20px;
 }
 
 footer .footer > div {
   margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+  max-width: 1080px;
+  padding: 0px 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 footer .footer p {
+  margin: 0 0 10px 0;
+}
+
+/* Top navigation links */
+footer .footer > div > .section:first-child {
+  border-bottom: 3px solid #e6e6e6;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer .footer > div > .section:first-child .default-content-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer .footer > div > .section:first-child ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
   margin: 0;
 }
 
+footer .footer > div > .section:first-child ul:first-child {
+  flex: 1;
+  min-width: 300px;
+}
+
+footer .footer > div > .section:first-child ul li a {
+  color: var(--primary-accent-color);
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+footer .footer > div > .section:first-child ul:nth-child(2) {
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+/* Social media icons */
+footer .footer > div > .section:first-child ul:nth-child(2) li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: var(--primary-accent-color);
+  border-radius: 50%;
+  color: white;
+}
+
+footer .footer > div > .section:first-child ul:nth-child(2) li a span.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer .footer > div > .section:first-child ul:nth-child(2) li a span.icon img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+/* Nutrition information section */
+footer .footer > div > .section:nth-child(2) {
+  text-align: left;
+  color: var(--dark-color);
+  font-size: 13px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+footer .footer > div > .section:nth-child(2) p {
+  margin-bottom: 10px;
+}
+
+footer .footer > div > .section:nth-child(2) a {
+  color: var(--primary-accent-color);
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* Columns section */
+footer .footer .columns-wrapper {
+  display: block;
+  margin-bottom: 30px;
+}
+
+footer .footer .columns > div {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+footer .footer .columns > div > div {
+  margin-bottom: 20px;
+}
+
+footer .footer .columns > div > div:nth-child(1),
+footer .footer .columns > div > div:nth-child(2) {
+  flex: 0 0 25%;
+}
+
+footer .footer .columns > div > div:nth-child(3) {
+  flex: 0 0 50%;
+}
+
+/* Left column - menu links */
+footer .footer .columns > div > div:nth-child(1) ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .footer .columns > div > div:nth-child(1) li {
+  margin-bottom: 8px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: var(--heading-font-family);
+}
+
+footer .footer .columns > div > div:nth-child(1) a {
+  color: var(--primary-accent-color);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Middle column - legal links */
+footer .footer .columns > div > div:nth-child(2) ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .footer .columns > div > div:nth-child(2) li {
+  margin-bottom: 8px;
+}
+
+footer .footer .columns > div > div:nth-child(2) a {
+  color: var(--primary-accent-color);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Right column - rewards and app */
+footer .footer .columns > div > div:nth-child(3) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 330px;
+  margin: 0 auto; /* Center on mobile by default */
+}
+
+/* First image (rewards logo) in its own row */
+footer .footer .columns > div > div:nth-child(3) p:first-child {
+  text-align: center;
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+footer .footer .columns > div > div:nth-child(3) p:first-child img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Text row */
+footer .footer .columns > div > div:nth-child(3) p:nth-child(2) {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-accent-color);
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+
+
+/* Strong text styling */
+footer .footer .columns > div > div:nth-child(3) p:nth-child(2) strong {
+  font-weight: 700;
+  font-family: var(--zax-casual-font-family);
+  color: var(--secondary-accent-color);
+  font-size: 22px;
+  padding-right: 2px;
+}
+
+/* App store images container */
+footer .footer .columns > div > div:nth-child(3) .app-images-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* App store images - this will be applied with JavaScript */
+footer .footer .columns > div > div:nth-child(3) .app-images-container img {
+  max-width: 160px;
+  height: auto;
+}
+
+/* Hide original app store images */
+footer .footer .columns > div > div:nth-child(3) p:nth-child(2) picture {
+  display: none;
+}
+
+/* Bottom section with logo and copyright */
+footer .footer > div > .section:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+footer .footer > div > .section:last-child img {
+  max-width: 144px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+footer .footer > div > .section:last-child p:last-child {
+  color: var(--primary-accent-color);
+  font-size: 13px;
+  font-weight: 300;
+}
+
+/* Responsive styles */
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding: 0 32px;
+  }
+  
+  footer .footer > div > .section:first-child ul {
+    justify-content: left;
+  }
+  
+  footer .footer .columns > div {
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+  
+  /* Column layout adjustments for desktop */
+  footer .footer .columns > div > div:nth-child(1),
+  footer .footer .columns > div > div:nth-child(2),
+  footer .footer .columns > div > div:nth-child(3) {
+    align-self: flex-start;
+  }
+  
+  /* Third column with content centered in a 330px container */
+  footer .footer .columns > div > div:nth-child(3) {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end; /* Justify container to the end */
+  }
+  
+  /* Keep content centered within the third column container */
+  footer .footer .columns > div > div:nth-child(3) p:first-child,
+  footer .footer .columns > div > div:nth-child(3) p:nth-child(2) {
+    text-align: center;
+  }
+  
+  footer .footer .columns > div > div:nth-child(3) .app-images-container {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hide navigation links before social media in the top section */
+  footer .footer > div > .section:first-child ul:first-child {
+    display: none;
+  }
+
+  footer .footer .columns-wrapper {
+    justify-content: center;
+  }
+  
+  
+  /* Center social media icons */
+  footer .footer > div > .section:first-child ul:last-child {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  /* Hide link group in first column */
+  footer .footer .columns > div > div:nth-child(1) {
+    display: none;
+  }
+  
+  /* Center all content on mobile */
+  footer .footer .columns > div > div {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  footer .footer .columns > div > div ul {
+    text-align: center;
+    padding: 0;
+  }
+  
+  footer .footer .columns > div > div:nth-child(2) a {
+    display: inline-block;
+    text-align: center;
+  }
+  
+  /* Center nutrition section */
+  footer .footer > div > .section:nth-child(2) {
+    text-align: center;
+  }
+  
+  /* Center bottom logo and copyright */
+  footer .footer > div > .section:last-child {
+    align-items: center;
+    text-align: center;
   }
 }

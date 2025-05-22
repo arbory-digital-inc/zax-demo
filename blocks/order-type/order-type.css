@@ -1,0 +1,103 @@
+.order-type-container {
+  margin: -50px 0 0 0 !important;
+}
+
+.order-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 0 0 30px 0;
+}
+
+.order-type .order-title {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.order-type .title-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--secondary-accent-color);
+  text-transform: uppercase;
+  margin: 4px;
+}
+
+.order-type .order-buttons {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.order-type .button-cell {
+  flex: 1;
+}
+
+.order-type .order-buttons p {
+  margin: 0;
+}
+
+/* Base styles for all order buttons */
+.order-type .order-button,
+.order-type a.button.order-button:any-link {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8%;
+  margin: 0;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+/* Pickup button specific styles */
+.order-type .order-pickup,
+.order-type a.button.order-pickup:any-link {
+  background-color: var(--secondary-accent-color);
+  border-radius: 30px 0 0 30px;
+}
+
+.order-type .order-pickup:hover,
+.order-type a.button.order-pickup:hover,
+.order-type a.button.order-pickup:any-link:hover {
+  background-color: var(--secondary-accent-color-hover);
+  text-decoration: none;
+  color: white;
+}
+
+/* Delivery button specific styles */
+.order-type .order-delivery,
+.order-type a.button.order-delivery:any-link {
+  background-color: var(--secondary-accent-color);
+  border-radius: 0 30px 30px 0;
+}
+
+.order-type .order-delivery:hover,
+.order-type a.button.order-delivery:hover,
+.order-type a.button.order-delivery:any-link:hover {
+  background-color: var(--secondary-accent-color-hover);
+  text-decoration: none;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .order-type {
+    padding: 10px;
+  }
+  
+  .order-type .title-text {
+    font-size: 16px;
+  }
+  
+  .order-type .order-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

@@ -2,26 +2,218 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  grid-gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+  flex: 1 0 300px;
+  max-width: 100%;
+  border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+  .cards > ul {
+    gap: 16px;
+  }
+  
+  .cards > ul > li {
+    flex: 1 0 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards > ul > li {
+    flex: 1 0 100%;
+  }
+}
+
+.cards > ul > li {
+  background-color: var(--background-color-2);
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  margin: 24px;
 }
+
 
 .cards .cards-card-image {
   line-height: 0;
+  overflow: hidden;
+  border-radius: 1rem 1rem 0 0;
 }
 
 .cards > ul > li img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  border-radius: 1rem 1rem 0 0;
+}
+
+/* Additional responsive styles */
+.cards .cards-card-body {
+  margin: 24px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  strong{
+    font-size: var(--heading-font-size-m);
+    font-family: var(--heading-font-family);
+  }
+}
+
+@media (max-width: 480px) {
+  .cards .cards-card-body {
+    margin: 12px;
+  }
+}
+
+/* Icon variant styles */
+.cards.inline-img {
+  & > ul > li {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    position: relative; /* For making the entire card clickable */
+    cursor: default; /* Default cursor for all cards */
+    
+    
+    /* First div contains the icon */
+    & > .cards-card-body:first-child {
+      flex: 0 0 auto;
+      margin: 0 0 0 24px;
+      padding-right: 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Second div contains the text content */
+    & > .cards-card-body:nth-child(2) {
+      flex: 1;
+      margin: 6px 6px 6px 6px;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    /* Button styling */
+    & a.button {
+      position: static;
+      background: transparent;
+      color: var(--text-color);
+      padding: 0;
+      margin: 0;
+      font-size: var(--heading-font-size-m);
+      font-family: var(--heading-font-family);
+      font-weight: 600;
+      letter-spacing: -1px;
+      text-transform: none;
+      box-shadow: none;
+    }
+    
+    /* Make cards with links appear clickable */
+    & .button-container {
+      margin: 0;
+      cursor: pointer;
+      
+      /* Create overlay for entire card clickability */
+      & a::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+      }
+      
+      /* Make adjacent elements also appear clickable */
+      & ~ *,
+      & + * {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.cards.inline-img {
+  /* Icon styling */
+  & .cards-card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 156px;
+    padding: 8px;
+    flex-shrink: 0;
+    
+    & img {
+      width: 156px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 0;
+    }
+  }
+  
+  /* Title styling */
+  & .cards-card-body strong,
+  & .cards-card-body .button-container a.button {
+    display: block;
+    font-size: 20px;
+    font-family: var(--heading-font-family);
+    margin: 0;
+    text-align: left;
+  }
+  
+  /* Description styling */
+  & .cards-card-body:nth-child(2) {
+    & p:nth-child(2) {
+      margin-top: 0;
+      color: var(--secondary-text-color);
+      text-align: left;
+    }
+    
+    & p:first-child {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+      margin-top: 0;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.1;
+      
+      & .cards-card-image {
+        margin-right: 12px;
+      }
+    }
+  }
+  
+  & .cards-card-body:nth-child(1) p:first-child {
+    margin-top: 0;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    & .cards-card-body {
+      & .cards-card-image {
+        width: 156px;
+        padding: 6px;
+      }
+      
+      & strong {
+        font-size: var(--heading-font-size-s);
+      }
+    }
+    
+    & > ul > li {
+      & > .cards-card-body:first-child {
+        margin: 20px 0 0 16px;
+      }
+      
+      & > .cards-card-body:nth-child(2) {
+        margin: 16px 16px 16px 8px;
+      }
+    }
+  }
 }
