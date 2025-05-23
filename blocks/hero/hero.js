@@ -106,21 +106,41 @@ import {
   function decorateCarousel(block) {
     if (!block.classList.contains('hero-carousel')) return;
     
-    // Get all the picture elements from the block
-    const pictures = Array.from(block.querySelectorAll('picture'));
-    if (pictures.length < 2) return; // Need at least 2 images for a carousel
-    
     // Create slides container
     const slidesContainer = document.createElement('div');
     slidesContainer.className = 'slides-container';
     
-    // Create slides from pictures
-    pictures.forEach((picture, index) => {
+    // Get all the image containers (divs that contain pictures)
+    // We need to check if these pictures are wrapped in links
+    const imageContainers = Array.from(block.querySelectorAll(':scope > div > div'));
+    
+    // Filter to only those that contain pictures
+    const slideContainers = imageContainers.filter(container => 
+      container.querySelector('picture') !== null
+    );
+    
+    if (slideContainers.length < 2) return; // Need at least 2 images for a carousel
+    
+    // Create slides from the containers
+    slideContainers.forEach((container, index) => {
       const slide = document.createElement('div');
       slide.className = `slide ${index === 0 ? 'active' : ''}`;
       
-      // Move the picture to the slide
-      slide.appendChild(picture);
+      // Check if the picture is wrapped in a link
+      const picture = container.querySelector('picture');
+      const link = container.querySelector('a');
+      
+      if (link && link.contains(picture)) {
+        // If the picture is inside a link, preserve the link
+        slide.appendChild(link.cloneNode(true));
+        
+        // Add cursor pointer to indicate it's clickable
+        slide.style.cursor = 'pointer';
+      } else if (picture) {
+        // Otherwise just move the picture
+        slide.appendChild(picture.cloneNode(true));
+      }
+      
       slidesContainer.appendChild(slide);
     });
     
@@ -137,7 +157,7 @@ import {
     }
     
     // Add carousel controls
-    addCarouselControls(block, pictures.length);
+    addCarouselControls(block, slideContainers.length);
     
     // Set up autoplay
     setupCarouselAutoplay(block);
