@@ -140,6 +140,27 @@ pre {
   font-size: var(--body-font-size-s);
 }
 
+h1 code,pre{
+  font-family: var(--zax-casual-font-family) !important;
+  font-size: 40px;
+  color: var(--secondary-accent-color);
+  padding-right: 4px;
+}
+
+h2 code,pre{
+  font-family: var(--zax-casual-font-family) !important;
+  font-size: 40px;
+  color: var(--secondary-accent-color);
+  padding-right: 4px;
+}
+
+h3 code,pre{
+  font-family: var(--zax-casual-font-family) !important;
+  font-size: 40px;
+  color: var(--secondary-accent-color);
+  padding-right: 4px;
+}
+
 pre {
   padding: 16px;
   border-radius: 8px;
@@ -215,6 +236,10 @@ button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color);
+}
+
+li p{
+  margin-top: 0;
 }
 
 main img {

@@ -1,0 +1,44 @@
+/* Fixed Width Block - Controls the maximum width of content */
+.fixed-width-container {
+  margin: 0 0 40px 0 !important;
+}
+
+
+.fixed-width {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hide the configuration row */
+.fixed-width > div:first-child {
+  display: none;
+}
+
+/* Style the content container */
+.fixed-width > div:nth-child(2) {
+  width: 100%;
+}
+
+/* Apply spacing to list items */
+.fixed-width ul {
+  padding: 0;
+  margin: 0;
+}
+
+.fixed-width li {
+  margin-bottom: 24px;
+}
+
+.fixed-width li:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fixed-width {
+    padding: 0 16px;
+  }
+}

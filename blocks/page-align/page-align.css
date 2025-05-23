@@ -1,0 +1,72 @@
+/* Page Align Block - Controls text alignment within sections */
+
+/* Target the entire section with page-align-container class */
+.section.page-align-container {
+  width: 100%;
+}
+
+/* Left alignment (default) */
+.page-align {
+  width: 100%;
+  display: block;
+}
+
+/* Center alignment - target the container and all content within the section */
+.section.page-align-container:has(.page-align.center) {
+  /* Apply center alignment to all content in the section */
+  text-align: center;
+}
+
+.section.page-align-container:has(.page-align.center) h1,
+.section.page-align-container:has(.page-align.center) h2,
+.section.page-align-container:has(.page-align.center) h3,
+.section.page-align-container:has(.page-align.center) h4,
+.section.page-align-container:has(.page-align.center) h5,
+.section.page-align-container:has(.page-align.center) h6,
+.section.page-align-container:has(.page-align.center) p,
+.section.page-align-container:has(.page-align.center) div,
+.section.page-align-container:has(.page-align.center) ul,
+.section.page-align-container:has(.page-align.center) ol,
+.section.page-align-container:has(.page-align.center) li,
+.section.page-align-container:has(.page-align.center) a,
+.section.page-align-container:has(.page-align.center) span {
+  text-align: center;
+}
+
+/* Fallback for browsers that don't support :has() */
+.page-align.center ~ div,
+.page-align.center ~ div *,
+.page-align-wrapper ~ div,
+.page-align-wrapper ~ div * {
+  text-align: center;
+}
+
+/* Right alignment - target the container and all content within the section */
+.section.page-align-container:has(.page-align.right) {
+  /* Apply right alignment to all content in the section */
+  text-align: right;
+}
+
+.section.page-align-container:has(.page-align.right) h1,
+.section.page-align-container:has(.page-align.right) h2,
+.section.page-align-container:has(.page-align.right) h3,
+.section.page-align-container:has(.page-align.right) h4,
+.section.page-align-container:has(.page-align.right) h5,
+.section.page-align-container:has(.page-align.right) h6,
+.section.page-align-container:has(.page-align.right) p,
+.section.page-align-container:has(.page-align.right) div,
+.section.page-align-container:has(.page-align.right) ul,
+.section.page-align-container:has(.page-align.right) ol,
+.section.page-align-container:has(.page-align.right) li,
+.section.page-align-container:has(.page-align.right) a,
+.section.page-align-container:has(.page-align.right) span {
+  text-align: right;
+}
+
+/* Fallback for browsers that don't support :has() */
+.page-align.right ~ div,
+.page-align.right ~ div *,
+.page-align-wrapper ~ div,
+.page-align-wrapper ~ div * {
+  text-align: right;
+}
