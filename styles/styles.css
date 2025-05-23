@@ -161,13 +161,14 @@ button {
 
 /* links */
 a:any-link {
-  color: var(--link-color);
-  text-decoration: none;
+  color: var(--primary-accent-color);
+  text-decoration: none !important;
   overflow-wrap: break-word;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 a:hover {
-  color: var(--link-hover-color);
+  color: var(--primary-accent-color-hover);
   text-decoration: underline;
 }
 
@@ -187,7 +188,7 @@ button {
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
+  background-color: var(--primary-accent-color);
   color: var(--background-color);
   cursor: pointer;
   overflow: hidden;
@@ -199,7 +200,7 @@ a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: var(--primary-accent-color-hover);
   cursor: pointer;
 }
 

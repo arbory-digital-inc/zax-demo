@@ -58,6 +58,11 @@ footer .footer > div > .section:first-child ul li a {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 18px;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+footer .footer > div > .section:first-child ul li a:hover {
+  color: var(--primary-accent-color-hover);
 }
 
 footer .footer > div > .section:first-child ul:nth-child(2) {
@@ -75,6 +80,11 @@ footer .footer > div > .section:first-child ul:nth-child(2) li a {
   background-color: var(--primary-accent-color);
   border-radius: 50%;
   color: white;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+footer .footer > div > .section:first-child ul:nth-child(2) li a:hover {
+  background-color: var(--primary-accent-color-hover);
 }
 
 footer .footer > div > .section:first-child ul:nth-child(2) li a span.icon {
@@ -154,6 +164,11 @@ footer .footer .columns > div > div:nth-child(1) a {
   color: var(--primary-accent-color);
   text-decoration: none;
   font-size: 18px;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+footer .footer .columns > div > div:nth-child(1) a:hover {
+  color: var(--primary-accent-color-hover);
 }
 
 /* Middle column - legal links */
@@ -172,6 +187,11 @@ footer .footer .columns > div > div:nth-child(2) a {
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+footer .footer .columns > div > div:nth-child(2) a:hover {
+  color: var(--primary-accent-color-hover);
 }
 
 /* Right column - rewards and app */
